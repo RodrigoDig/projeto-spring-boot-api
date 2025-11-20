@@ -1,6 +1,7 @@
 package com.digolucas.demo_h2.controller;
 
 import com.digolucas.demo_h2.model.Product;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 import com.digolucas.demo_h2.repository.ProductRepository;
 
@@ -21,12 +22,12 @@ public class ProductController {
     }
 
     @PostMapping
-    public Product createProduct(@RequestBody Product product) {
+    public Product createProduct(@Valid @RequestBody Product product) {
         return productRepository.save(product);
     }
 
     @PutMapping
-    public Product updateProduct(@RequestBody Product product) {
+    public Product updateProduct(@Valid @RequestBody Product product) {
         return productRepository.save(product);
     }
 
