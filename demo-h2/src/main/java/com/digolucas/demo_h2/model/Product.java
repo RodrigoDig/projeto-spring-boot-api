@@ -1,12 +1,18 @@
 package com.digolucas.demo_h2.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Product {
 
     @Id
@@ -25,18 +31,7 @@ public class Product {
     private int stock;
 
     //Gerar dependencia size
+    @NotBlank(message = "Descrição Obrigatória")
+    @Size(min = 10, message = "Descrição tem que ter no minímo 10")
     private String description;
-
-    public Product() {
-
-    }
-
-    public Product(Long id, String nameProduct, String producer, double price, int stock, String description) {
-        this.id = id;
-        this.nameProduct = nameProduct;
-        this.producer = producer;
-        this.price = price;
-        this.stock = stock;
-        this.description = description;
-    }
 }
