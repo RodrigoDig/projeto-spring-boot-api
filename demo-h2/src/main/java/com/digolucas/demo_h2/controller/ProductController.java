@@ -22,6 +22,11 @@ public class ProductController {
         return productRepository.findAll();
     }
 
+    @GetMapping
+    public Product findById(Long id) {
+        return productRepository.findById(id).get();
+    }
+
     @PostMapping
     public Product createProduct(@Valid @RequestBody Product product) {
         return productRepository.save(product);
