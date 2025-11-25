@@ -22,18 +22,19 @@ public class ProductController {
         return productRepository.findAll();
     }
 
-    @GetMapping
-    public Product findById(Long id) {
-        return productRepository.findById(id).get();
-    }
-
     @PostMapping
     public Product createProduct(@Valid @RequestBody Product product) {
         return productRepository.save(product);
     }
 
-    @PutMapping
-    public Product updateProduct(@Valid @RequestBody Product product) {
+    @GetMapping("/{id}")
+    public Product getById(@PathVariable Long id) {
+        return productRepository.findById(id).orElseThrow();
+    }
+
+    @PutMapping("/{id}")
+    public Product updateProduct(@Valid @RequestBody Product product, @PathVariable Long id) {
+        product.setId(id);
         return productRepository.save(product);
     }
 
